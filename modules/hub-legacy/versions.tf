@@ -1,5 +1,6 @@
+
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2021 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,8 +15,10 @@
  * limitations under the License.
  */
 
-module "example" {
-  source = "../../../examples/simple_zonal_with_acm"
+terraform {
+  required_version = ">= 0.13.0"
 
-  project_id = var.project_ids[1]
+  provider_meta "google" {
+    module_name = "blueprints/terraform/terraform-google-kubernetes-engine:hub/v16.1.0"
+  }
 }

@@ -15,9 +15,27 @@
  */
 
 module "hub" {
-  source           = "../../modules/hub"
-  project_id       = var.project_id
-  location         = module.gke.location
-  cluster_name     = module.gke.name
-  cluster_endpoint = module.gke.endpoint
+  source       = "../../modules/hub"
+  project_id   = var.project_id
+  location     = module.gke.location
+  cluster_name = module.gke.name
+
+  depends_on = [module.gke]
+}
+
+module "config-sync" {
+  source       = "../../modules/config-sync"
+  project_id   = var.project_id
+  location     = module.gke.location
+  cluster_name = module.gke.name
+
+  enable_fleet_registration = false
+  cluster_membership_id     = module.hub.cluster_membership_id
+
+  sync_repo   = "https://github.com/GoogleCloudPlatform/csp-config-management.git"
+  sync_branch = "1.0.0"
+  policy_dir  = "foo-corp"
+
+  secret_type    = "none"
+  create_ssh_key = false
 }

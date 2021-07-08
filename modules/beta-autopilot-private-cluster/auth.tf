@@ -14,11 +14,10 @@
  * limitations under the License.
  */
 
-// This file was automatically generated from a template in ./autogen/main
-
-/******************************************
-  Retrieve authentication token
- *****************************************/
-data "google_client_config" "default" {
-  provider = google-beta
+module "hub" {
+  source                  = "../../modules/hub"
+  project_id              = var.project_id
+  location                = module.gke.location
+  cluster_name            = module.gke.name
+  gke_hub_membership_name = "gke-asm-membership"
 }

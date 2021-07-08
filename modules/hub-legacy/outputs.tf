@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-module "example" {
-  source = "../../../examples/simple_zonal_with_acm"
 
-  project_id = var.project_ids[1]
+output "wait" {
+  description = "An output to use when you want to depend on registration finishing"
+  value       = module.gke_hub_registration.wait
 }

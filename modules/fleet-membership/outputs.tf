@@ -14,8 +14,18 @@
  * limitations under the License.
  */
 
-module "example" {
-  source = "../../../examples/simple_zonal_with_acm"
+output "cluster_membership_id" {
+  description = "The ID of the hub membership"
+  value       = var.enable_fleet_registration ? google_gke_hub_membership.primary[0].membership_id : local.gke_hub_membership_name
+  depends_on = [
+    google_gke_hub_membership.primary
+  ]
+}
 
-  project_id = var.project_ids[1]
+output "wait" {
+  description = "An output to use when you want to depend on registration finishing"
+  value       = local.gke_hub_membership_name
+  depends_on = [
+    google_gke_hub_membership.primary
+  ]
 }
