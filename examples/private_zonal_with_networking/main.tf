@@ -66,6 +66,7 @@ module "gke" {
   regional   = false
   region     = var.region
   zones      = slice(var.zones, 0, 1)
+  #zones      = "northamerica-northeast2-a"
 
   network                 = module.gcp-network.network_name
   subnetwork              = module.gcp-network.subnets_names[0]

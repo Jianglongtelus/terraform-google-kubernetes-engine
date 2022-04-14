@@ -15,6 +15,7 @@
  */
 
 variable "project_id" {
+  default = "ims-kpi-web-portal-lab-7b4f89"
   description = "The project ID to host the cluster in"
 }
 
@@ -24,11 +25,13 @@ variable "cluster_name" {
 }
 
 variable "region" {
+  default = "us-east1"
   description = "The region to host the cluster in"
 }
 
 variable "zones" {
   type        = list(string)
+  default = ["us-east1-b","us-east1-c","us-east1-c"]
   description = "The zone to host the cluster in (required if is a zonal cluster)"
 }
 
