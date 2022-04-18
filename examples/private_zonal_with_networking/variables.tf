@@ -25,13 +25,13 @@ variable "cluster_name" {
 }
 
 variable "region" {
-  default = "us-east1"
+  default = "northamerica-northeast2"
   description = "The region to host the cluster in"
 }
 
 variable "zones" {
   type        = list(string)
-  default = ["us-east1-b","us-east1-c","us-east1-c"]
+  default = ["northamerica-northeast2-a","northamerica-northeast2-b","northamerica-northeast2-c"]
   description = "The zone to host the cluster in (required if is a zonal cluster)"
 }
 
